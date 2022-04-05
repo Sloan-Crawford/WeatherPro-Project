@@ -1,9 +1,11 @@
 # WeatherPro-Project
 
-Key features:
+Search your favourite classic books for specific content!
 
-Search, highlighting, fetch, wrapped in a mini-site
+**Key features**:
 
-Skills:
+- Search, highlighting, fetch, wrapped in a mini-site
+
+**Skills**:
 
 Using reverse geo-locating to get locations from the Google Maps Api
