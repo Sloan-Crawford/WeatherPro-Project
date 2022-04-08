@@ -1,0 +1,1 @@
+Using the col-md class name is another interesting way to stack content (in this case this info in various rows) and make it responsive using Bootstrap. Contrast that with the media qeuries I used for the footer.

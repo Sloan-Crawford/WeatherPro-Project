@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LookBook - What's in your favourite classic books?</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- custom style sheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- font-awesome (from cdn.js)-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- JS functionality -->
+    <script src="SearchString.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="prism.css" />
+  </head>
+  <body>
+        <!-- nav -->
+    <nav class="navbar">
+      <div class="nav-center">
+        <!-- header -->
+        <div class="nav-header">
+          <a href="index.html" class="nav-logo">
+            <img src="./images/Sloan_logo.png" alt="Sloan's logo" />
+          </a>
+          <button type="button" class="nav-btn">
+            <i class="fas fa-align-justify"></i>
+          </button>
+        </div>
+        <!-- links -->
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="_blank" class="nav-link">Portfolio</a>
+          <a href="code.html" class="nav-link">Code</a>
+          <div class="nav-link contact-link">
+            <a href="contact.html" class="btn"> contact </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- end of nav -->
+    <div class="container">
+        <!-- code section -->
+        <h2 class="card-header code-header" id="fileName">
+          This is the code that makes it work:
+        </h2>
+        <div class="card-body displayBox scroll-box2">
+          <pre>
+          <code class="language-javascript">
+// Load a book
+function loadBook(filename, displayName){
+ let currentBook = "";
+ let url = "books/" + filename;
+
+ // reset the UI
+ document.getElementById("fileName").innerHTML = displayName;
+ document.getElementById("searchstat").innerHTML = "";
+ document.getElementById("keyword").value = "";
+
+ // Server request to load book
+ var xhr = new XMLHttpRequest();
+ xhr.open("GET", url, true); 
+ xhr.send(); 
+
+ xhr.onreadystatechange = function () {
+  if (/* xhr.readystate == 4 && */ xhr.status == 200) {
+   currentBook = xhr.responseText;
+   
+   // get doc info before it gets altered
+   getDocStats(currentBook);
+
+      // remove line feeds and carriage returns and replace with a <br>
+   currentBook = currentBook.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+   document.getElementById("fileContent").innerHTML = currentBook;
+
+   var elmnt = document.getElementById("fileContent");
+   elmnt.scrollTop = 0;
+  }
+ };
+}
+
+// get the book stats
+function getDocStats(fileContent) {
+
+  var docLength = document.getElementById("docLength");
+  var wordCount = document.getElementById("wordCount");
+  var charCount = document.getElementById("charCount");
+
+  let text = fileContent.toLowerCase();
+  let wordArray = text.match(/\b\S+\b/g); //looks for characters between any two spaces (globally)
+  let wordDictionary = {};
+
+// filter out stop words
+  var nonStopWords = [];
+  nonStopWords = filterStopWords(wordArray);
+
+// count every word in the wordArray
+for(let word in nonStopWords) {
+ let wordValue = nonStopWords[word];
+ if (wordDictionary[wordValue] > 0) {
+  wordDictionary[wordValue] += 1;
+ }
+ else {
+  wordDictionary[wordValue] = 1
+ }
+}
+
+// sort the array
+let wordList = sortProperties(wordDictionary);
+
+// return the top 5 words
+var high5Words = wordList.slice(0, 6);
+// return the botom 5 words
+var low5Words = wordList.slice(-6,wordList.length);
+
+// write the values to the webpage
+var mostUsed = document.getElementById("mostUsed");
+var leastUsed = document.getElementById("leastUsed");
+ULTemplate(high5Words, mostUsed);
+ULTemplate(low5Words, leastUsed);
+
+
+docLength.innerText = "Document Length: " + text.length;
+wordCount.innerText = "Word Count: " + wordArray.length;
+} 
+
+
+function ULTemplate(items, element){
+ let rowTemplate = document.getElementById("template-ul-items");
+ let templateHTML = rowTemplate.innerHTML;
+ let resultsHTML = "";
+
+ for(i=0; i<items.length-1; i++){
+  resultsHTML += templateHTML.replace('{{val}}', items[i][0] + " : " + items[i][1] + " time(s)");
+ }
+
+ element.innerHTML = resultsHTML;
+}
+
+function sortProperties(object){
+ // first convert the object to an array
+ let returnArray = Object.entries(object);
+
+ // sort the array by value
+ returnArray.sort(function (first, second){
+return second[1] - first[1];
+ });
+
+ return returnArray;
+}
+
+// filter out the stop words
+function filterStopWords(wordArray) {
+ var stopWords = getStopWords();
+ var nonStopObject = {};
+ var nonStopArray = [];
+
+ for (i=0; i < stopWords.length; i++) {
+  nonStopObject[stopWords[i].trim()] = true;
+ }
+
+ for (i=0; i < wordArray.length; i++) {
+  word = wordArray[i].trim().toLowerCase(); // gives the current word
+  if (!nonStopObject[word]){
+   nonStopArray.push(word);
+  }
+ }
+
+ return nonStopArray;
+}
+
+//a list of stop words we don't want to include in document info or Stats
+function getStopWords() {
+    return ["a", "able", "about", "across", "after", "all", "almost", "also", "am", "among", "an", "and", "any", "are", "as", "at", "be", "because", "been", "but", "by", "can", "cannot", "could", "dear", "did", "do", "does", "either", "else", "ever", "every", "for", "from", "get", "got", "had", "has", "have", "he", "her", "hers", "him", "his", "how", "however", "i", "if", "in", "into", "is", "it", "its", "just", "least", "let", "like", "likely", "may", "me", "might", "most", "must", "my", "neither", "no", "nor", "not", "of", "off", "often", "on", "only", "or", "other", "our", "own", "rather", "said", "say", "says", "she", "should", "since", "so", "some", "than", "that", "the", "their", "them", "then", "there", "these", "they", "this", "tis", "to", "too", "twas", "us", "wants", "was", "we", "were", "what", "when", "where", "which", "while", "who", "whom", "why", "will", "with", "would", "yet", "you", "your", "ain't", "aren't", "can't", "could've", "couldn't", "didn't", "doesn't", "don't", "hasn't", "he'd", "he'll", "he's", "how'd", "how'll", "how's", "i'd", "i'll", "i'm", "i've", "isn't", "it's", "might've", "mightn't", "must've", "mustn't", "shan't", "she'd", "she'll", "she's", "should've", "shouldn't", "that'll", "that's", "there's", "they'd", "they'll", "they're", "they've", "wasn't", "we'd", "we'll", "we're", "weren't", "what'd", "what's", "when'd", "when'll", "when's", "where'd", "where'll", "where's", "who'd", "who'll", "who's", "why'd", "why'll", "why's", "won't", "would've", "wouldn't", "you'd", "you'll", "you're", "you've"];
+}
+
+// highlights the words from the search input
+function performMark() {
+
+ // read the keyword
+ var keyword = document.getElementById("keyword").value;
+ var display = document.getElementById("fileContent");
+
+ var newContent = "";
+ 
+ // locate the items that are currently marked
+ let spans = document.querySelectorAll("mark");
+
+ for(var i = 0; i < spans.length; i++) {
+  spans[i].outerHTML = spans[i].innerHTML;
+ }
+
+ var re = new RegExp(keyword, "gi"); // g = global, i = case insensitive
+ var replaceText = "<mark id='markme'>$&</mark>"; 
+ var bookContent = display.innerHTML;
+
+ // add the mark to the book content (replaces the $&)
+ newContent = bookContent.replace(re, replaceText);
+
+ display.innerHTML = newContent;
+ var count = document.querySelectorAll("mark").length;
+ document.getElementById("searchstat").innerHTML = "found " + count + " matches";
+
+ // scroll to first found work
+ if(count > 0) {
+  var element = document.getElementById("markme");
+  element.scrollIntoView();
+ };
+
+}
+          </code>
+        </pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="page-footer">
+      <p>
+        &copy; <span id="date"></span>
+        <span class="footer-logo"> LookBook </span>
+        built by
+        <a href="http://www.google.com">Sloan Crawford</a>
+      </p>
+      <p>
+        <a href="mailto:sloan.crawford@gmail.com">sloan.crawford@gmail.com</a>
+      </p>
+      <p class="social-list__item">
+        <a class="social-list__link" href="https://github.com/Sloan-Crawford"
+          ><i class="fab fa-github" aria-hidden="true"></i
+        ></a>
+        <a class="social-list__link" href="https://twitter.com"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a
+          class="social-list__link"
+          href="https://www.linkedin.com/in/sloan-crawford-3b102262/"
+          ><i class="fab fa-linkedin" aria-hidden="true"></i
+        ></a>
+      </p>
+    </footer>
+    <!-- Additional JavaScript -->
+    <!-- jQuery, Popper.js, Bootstrap JS, prism.js -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="prism.js"></script>
+  </body>
+</html>

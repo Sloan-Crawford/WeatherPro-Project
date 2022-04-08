@@ -4,7 +4,163 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- custom style sheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- font-awesome (from cdn.js)-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- JS functionality -->
+    <script src="keys.js"></script>
+    <script src="weather.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="prism.css" />
+    <title>Sloan's WeatherPro Project</title>
   </head>
-  <body></body>
+  <body>
+    <!-- nav -->
+    <nav class="nav-bar">
+      <div class="nav-center">
+        <!-- header -->
+        <div class="nav-header">
+          <a href="index.html" class="nav-logo">
+            <img src="./images/Sloan_logo.png" alt="Sloan's logo" />
+          </a>
+        </div>
+        <!-- links -->
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="_blank" class="nav-link">Portfolio</a>
+          <a href="code.html" class="nav-link">Code</a>
+          <div class="nav-link contact-link">
+            <a href="sloan.crawford@gmail.com" class="btn"> contact </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- end of nav -->
+
+    <!-- main container-->
+    <div class="background">
+      <div class="d-flex flex column h-100">
+        <div class="container" id="Main">
+          <div class="row">
+            <div id="Title" class="col text-center">WeatherPro</div>
+          </div>
+          <div class="row">
+            <div id="Current" class="col">
+              <div class="row">
+                <div id="Temp" class="col-sm">
+                  <div id="Location" class="row col d-md-inline-block">
+                    Toronto, ON
+                  </div>
+                  <div class="row col d-md-inline-block" id="DayTime">
+                    Monday, 12:00PM
+                  </div>
+                  <div class="row col d-md-inline-block" id="Summary">
+                    Mostly Sunny
+                  </div>
+                  <div class="row col d-md-inline-block" id="CurrentTemp">
+                    90&deg;
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div id="Conditions" class="col-md">
+              <div class="row">
+                <div id="Precipitation" class="col-md">Precipitation 20%</div>
+              </div>
+              <div class="row">
+                <div id="Humidity" class="col-md">Humidity 95%</div>
+              </div>
+              <div class="row">
+                <div id="Wind" class="col-md">Wind 23km/h</div>
+              </div>
+            </div>
+            <div id="Forecast" class="col-md">
+              <!-- Nav Tabs -->
+              <ul class="nav nav-tabs" id="ForecastTab">
+                <li class="nav-item">
+                  <a href="#Weekly" class="nav-linky" data-toggle="tab"
+                    >Hourly</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#Daily" class="nav-linky active" data-toggle="tab"
+                    >Weekly</a
+                  >
+                </li>
+              </ul>
+
+              <!-- Tab Panes -->
+              <div class="tab-content">
+                <div class="tab-pane container active" id="Daily">
+                  <table id="DailyForecast" width="100%"></table>
+                </div>
+                <div class="tab-pane container fade" id="Weekly">
+                  <table id="WeeklyForecast" width="100%"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="page-footer">
+      <p>
+        &copy; <span id="date"></span>
+        <span class="footer-logo"> WeatherPro </span>
+        built by
+        <a href="http://www.google.com">Sloan Crawford</a>
+      </p>
+      <p>
+        <a href="mailto:sloan.crawford@gmail.com">sloan.crawford@gmail.com</a>
+      </p>
+      <p class="social-list__item">
+        <a class="social-list__link" href="https://github.com/Sloan-Crawford"
+          ><i class="fab fa-github" aria-hidden="true"></i
+        ></a>
+        <a
+          class="social-list__link"
+          href="https://www.youtube.com/playlist?list=PLzZ37-9URvZAHQKn8ukTB2YarkAvGUR3I"
+          ><i class="fab fa-youtube" aria-hidden="true"></i
+        ></a>
+        <a
+          class="social-list__link"
+          href="https://www.linkedin.com/in/sloan-crawford-3b102262/"
+          ><i class="fab fa-linkedin" aria-hidden="true"></i
+        ></a>
+      </p>
+    </footer>
+    <!-- Additional JavaScript -->
+    <!-- jQuery, Popper.js, Bootstrap JS, prism.js -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="prism.js"></script>
+  </body>
 </html>
