@@ -36,6 +36,7 @@ html {
     hsla(182, 94%, 39%, 0.6) 100%
   );
   --secondaryColor: rgb(255, 153, 0);
+  --secondaryColor-t: rgb(255, 153, 0, 0.5);
   --accentColor: rgba(18, 38, 58, 0.5);
   --accentColor2: rgb(6, 188, 193);
   --accentColor3: rgb(197, 216, 209);
@@ -43,7 +44,6 @@ html {
 }
 
 body {
-  height: 100%;
   font: var(--bodyFont);
   background-color: var(--background-color);
   background: var(--background);
@@ -136,7 +136,7 @@ a {
 /* end of nav */
 
 .background {
-  height: 100vh;
+  min-height: 100vh;
   min-height: 500px;
   background: url(./images/WeatherPrpBG.png) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -160,8 +160,12 @@ a {
 #Main {
   color: #fff;
   padding: 1.2rem;
-  border: 3px solid black;
   resize: vertical;
+}
+
+.col-sm {
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
 #Current {
@@ -170,6 +174,136 @@ a {
   font-weight: bold;
   letter-spacing: 1px;
   resize: vertical;
+}
+
+#CurrentTemp {
+  font-size: 5em;
+  font-family: var(--bodyFont);
+  letter-spacing: 4px;
+  color: white;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--secondaryColor);
+}
+
+.today {
+  display: flex;
+  margin-right: 4rem;
+}
+
+.conditions-container {
+  display: flex;
+}
+
+#Conditions {
+  background-color: var(--secondaryColor-t);
+  color: white;
+  padding-top: 0.5rem;
+  padding-left: 3rem;
+  resize: vertical;
+  justify-content: center;
+  text-align: center;
+  margin: 0.2rem 0 0.2rem;
+  font-weight: bold;
+}
+
+.data-box {
+  border-radius: 5%;
+  border: 2px solid var(--accentColor2);
+}
+
+#Forecast {
+  background-color: var(--accentColor2);
+  color: white;
+  padding: 20px;
+  resize: vertical;
+  font-size: 1em;
+}
+
+#ForecastTab li {
+  padding-right: 1em;
+}
+
+#ForecastTab li a.active {
+  border: 0.5px solid white;
+  border-radius: 3%;
+  padding: 0.5em 0.5em 0em 0.5em;
+  border-bottom-color: transparent;
+  background-color: var(--secondaryColor-t);
+  color: #fff;
+  font-weight: bold;
+}
+
+#ForecastTab li a {
+  border-bottom-color: transparent;
+  color: var(--accentColor4);
+  font-weight: bold;
+}
+
+#ForecastTab li a:hover {
+  text-decoration: none;
+  transition: var(--transition);
+  color: var(--secondaryColor);
+}
+
+.weather-forecast {
+  display: flex;
+}
+
+#Footer div a {
+  font-size: 1em;
+  color: var(--accentColor4);
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  #Title {
+    font-size: 1.4em;
+  }
+
+  #Current,
+  #Conditions {
+    font-size: 1.4em;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  #Title {
+    font-size: 2em;
+  }
+
+  #Current,
+  #Conditions {
+    font-size: 1.2em;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #Title {
+    font-size: 2em;
+  }
+
+  #Current,
+  #Forcast {
+    font-size: 1.5em;
+  }
+}
+
+.future-forecast {
+  justify-content: start;
+  align-items: none;
+  overflow-y: scroll;
+}
+
+@media (min-width: 992px) {
+  #Background {
+    font-size: 1em;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 }
 
 /* footer */
@@ -213,8 +347,17 @@ a {
   .page-footer {
     flex-direction: column;
     padding: 3.5em;
+    font-size: 0.9rem;
   }
   .page-footer p {
     margin: 0.15em;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .future-forecast {
+    justify-content: start;
+    align-items: none;
+    overflow-y: scroll;
   }
 }
