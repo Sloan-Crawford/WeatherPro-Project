@@ -11,6 +11,7 @@ const currentTempEl = document.getElementById('current-temp');
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+// Set time and date
 setInterval(() => {
     const time = new Date();
     const month = time.getMonth();
@@ -24,9 +25,9 @@ setInterval(() => {
     timeEl.innerHTML = (hoursIn12HrFormat < 10? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${ampm}</span>`
 
     dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month]
-
 }, 1000);
 
+// Access Open Weather API
 getWeatherData()
 function getWeatherData () {
  navigator.geolocation.getCurrentPosition((success) => {
@@ -42,23 +43,66 @@ function getWeatherData () {
  })
 }
 
+// Current Weather
 function showWeatherData (data) {
- let {humidity, pressure, wind_speed} = data.current;
+ let {temp, humidity, pressure, wind_speed} = data.current;
+
+ timezone.innerHTML = data.timezone;
+    countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
 
  currentWeatherItemsEl.innerHTML =
- `              <div class="weather-item col d-md-inline-block">
-                  <p>Humidity</p>
-                  <p class="data-box">${humidity}%</p>
-                </div>
-                <div class="weather-item col d-md-inline-block">
-                  <p>Pressure</p>
-                  <p class="data-box">${pressure}</p>
-                </div>
-                <div class="weather-item col d-md-inline-block">
-                  <p>Wind</p>
-                  <p class="data-box">${wind_speed} km/h</p>
-                </div>`;
-}
+`  <div class="weather-item col d-md-inline-block">
+     <p>Temperature</p>
+     <p class="data-box">${temp}&deg;C</p>
+   </div>
+   <div class="weather-item col d-md-inline-block">
+     <p>Humidity</p>
+     <p class="data-box">${humidity}%</p>
+   </div>
+   <div class="weather-item col d-md-inline-block">
+     <p>Pressure</p>
+     <p class="data-box">${pressure}</p>
+   </div>
+   <div class="weather-item col d-md-inline-block">
+     <p>Wind</p>
+     <p class="data-box">${wind_speed} km/h</p>
+   </div>`;
 
+// get cdn js moment package
+
+let nextDaysForecast = ''
+    data.daily.forEach((day, idx) => {
+        if(idx == 0){
+            currentTempEl.innerHTML = `
+
+
+           
+           
+            <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
+              
+            <div class="other">
+                <div class="day">${window.moment(day.dt*1000).format('dddd')}</div>
+                <div class="temp">Night - ${day.temp.night}&#176;C</div>
+                <div class="temp">Day - ${day.temp.day}&#176;C</div>
+            </div>
+            `
+        }else{
+            nextDaysForecast += `
+            <div class="weather-forecast-item">
+                <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
+                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - ${day.temp.night}&#176;C</div>
+                <div class="temp">Day - ${day.temp.day}&#176;C</div>
+            </div>
+
+
+            
+            `
+        }
+    })
+
+
+    weatherForecastEl.innerHTML = nextDaysForecast;
+}
 
 // alert("Unfortunately, your browser does not support geolocation services. Turn location services on to get weather information for your area")

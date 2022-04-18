@@ -53,41 +53,21 @@
           <div class="row">
             <div id="Title" class="col text-center">WeatherPro</div>
           </div>
-          <div class="row">
+          <div class="row text-center">
             <div id="Current" class="col">
               <div class="row">
                 <div id="Temp" class="col-sm">
-                  <div
-                    id="time-zone"
-                    class="row col d-md-inline-block time-zone"
-                  >
-                    Toronto, ON <span id="country">Country</span>
+                  <div id="time-zone" class="d-md-inline-block time-zone">
+                    Toronto, ON
                   </div>
-                  <div class="row col d-md-inline-block" id="time">
+                  <div class="place-container">
+                    <div class="time-zone" id="time-zone"></div>
+                    <div id="country" class="country">IN</div>
+                  </div>
+                  <div class="d-md-inline-block" id="time">
                     12:00 <span id="am-pm">PM</span>
                   </div>
-                  <div class="row col d-md-inline-block" id="date">
-                    Monday, 11 April
-                  </div>
-
-                  <div class="row-md">
-                    <div class="today" id="current-temp">
-                      <div class="row col d-md-inline-block" id="CurrentTemp">
-                        90&deg;
-                        <img
-                          src="http://openweathermap.org/img/wn/10d@2x.png"
-                          alt="weather icon"
-                          class="w-icon"
-                        />
-                      </div>
-
-                      <div class="other">
-                        <div class="day">Monday</div>
-                        <div class="temp">Night - 25.6&#176; C</div>
-                        <div class="temp">Day - 35.6&#176; C</div>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="" id="date">Monday, 11 April</div>
                 </div>
               </div>
             </div>
@@ -98,84 +78,76 @@
             </div>
           </div>
           <div id="Forecast" class="row future-forecast">
-            <!-- Nav Tabs -->
-            <ul class="nav nav-tabs" id="ForecastTab">
-              <li class="nav-item">
-                <a href="#Hourly" class="nav-linky active" data-toggle="tab"
-                  >Hourly</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="#Daily" class="nav-linky" data-toggle="tab">Daily</a>
-              </li>
-            </ul>
+            <div class="today col text-center" id="current-temp">
+              <img
+                src="http://openweathermap.org/img/wn/10d@2x.png"
+                alt="weather icon"
+                class="w-icon"
+              />
 
-            <!-- Tab Panes -->
-            <div class="row tab-content">
-              <div class="tab-pane container active" id="Hourly">
-                <table id="HourlyForecast" width="100%"></table>
-              </div>
-              <div class="tab-pane container fade" id="Daily">
-                <table id="DailyForecast" width="100%"></table>
-
-                <!-- daily info -->
-                <div class="weather-forecast" id="weather-forecast">
-                  <div class="weather-forecast-item">
-                    <div class="row col day">Tue</div>
-                    <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
-                      alt="weather icon"
-                      class="w-icon"
-                    />
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Wed</div>
-                    <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
-                      alt="weather icon"
-                      class="w-icon"
-                    />
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Thur</div>
-                    <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
-                      alt="weather icon"
-                      class="w-icon"
-                    />
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Fri</div>
-                    <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
-                      alt="weather icon"
-                      class="w-icon"
-                    />
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                  <div class="weather-forecast-item">
-                    <div class="day">Sat</div>
-                    <img
-                      src="http://openweathermap.org/img/wn/10d@2x.png"
-                      alt="weather icon"
-                      class="w-icon"
-                    />
-                    <div class="temp">Night - 25.6&#176; C</div>
-                    <div class="temp">Day - 35.6&#176; C</div>
-                  </div>
-                </div>
-                <!-- end of daily info -->
+              <div class="other">
+                <div class="day">Monday</div>
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
               </div>
             </div>
-          </div>
 
+            <!-- daily info -->
+            <div class="weather-forecast" id="weather-forecast">
+              <div class="weather-forecast-item">
+                <div class="row col day">Tue</div>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="weather icon"
+                  class="w-icon"
+                />
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
+              </div>
+              <div class="weather-forecast-item">
+                <div class="day">Wed</div>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="weather icon"
+                  class="w-icon"
+                />
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
+              </div>
+              <div class="weather-forecast-item">
+                <div class="day">Thur</div>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="weather icon"
+                  class="w-icon"
+                />
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
+              </div>
+              <div class="weather-forecast-item">
+                <div class="day">Fri</div>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="weather icon"
+                  class="w-icon"
+                />
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
+              </div>
+              <div class="weather-forecast-item">
+                <div class="day">Sat</div>
+                <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="weather icon"
+                  class="w-icon"
+                />
+                <div class="temp">Night - 25.6&#176; C</div>
+                <div class="temp">Day - 35.6&#176; C</div>
+              </div>
+
+              <!-- end of daily info -->
+            </div>
+          </div>
           <div class="row">
             <div id="Footer" class="col text-center">
               <div class="row">
@@ -192,7 +164,6 @@
         </div>
       </div>
     </div>
-
     <!-- footer -->
     <footer class="page-footer">
       <p>
@@ -220,7 +191,11 @@
         ></a>
       </p>
     </footer>
-    <!-- JS functionality -->
+    <!-- JS functionality (moment for dates, keys for open weather API)-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="keys.js"></script>
     <script src="weather.js"></script>
     <!-- Additional JavaScript -->
@@ -231,8 +206,7 @@
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
       crossorigin="anonymous"
     ></script>
     <script
