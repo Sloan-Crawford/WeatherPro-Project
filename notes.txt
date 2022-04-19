@@ -1,1 +1,5 @@
 Using the col-md class name is another interesting way to stack content (in this case this info in various rows) and make it responsive using Bootstrap. Contrast that with the media qeuries I used for the footer.
+
+Hit many snags along the way and decided to switch from Dark Sky to Open Weather for the external API and had a lot of fun figuring out the js functionality for the daily weather data.
+
+Going forward, I prefer to use my growing skills in CSS styling to work with flexbox, grid and general styling instead of Bootstrap most likely.

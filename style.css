@@ -88,7 +88,7 @@ body {
   transition: var(--transition);
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  /* width: 100%;  */
 }
 
 .nav-link {
@@ -131,6 +131,7 @@ a {
   .contact-link a {
     font-weight: normal;
     letter-spacing: 1.5px;
+    margin-right: 1rem;
   }
 }
 /* end of nav */
@@ -158,7 +159,7 @@ a {
   font-style: normal;
   font-size: 4rem;
   color: var(--secondaryColor);
-  -webkit-text-stroke-width: 1.7px;
+  -webkit-text-stroke-width: 1.3px;
   -webkit-text-stroke-color: var(--accentColor);
   letter-spacing: 1.5px;
   padding: 0.6rem;
