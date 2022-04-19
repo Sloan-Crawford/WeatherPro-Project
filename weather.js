@@ -22,12 +22,13 @@ setInterval(() => {
     const minutes = time.getMinutes();
     const ampm = hour >=12 ? 'PM' : 'AM';
 
+    // format time to 12hour clock
     timeEl.innerHTML = (hoursIn12HrFormat < 10? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${ampm}</span>`
 
     dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month]
 }, 1000);
 
-// Access Open Weather API
+// Access Open Weather API and show data
 getWeatherData()
 function getWeatherData () {
  navigator.geolocation.getCurrentPosition((success) => {
@@ -43,7 +44,7 @@ function getWeatherData () {
  })
 }
 
-// Current Weather
+
 function showWeatherData (data) {
  let {temp, humidity, pressure, wind_speed} = data.current;
 
@@ -70,20 +71,17 @@ function showWeatherData (data) {
 
 // get cdn js moment package
 
+// Current and Daily forecast
 let nextDaysForecast = ''
     data.daily.forEach((day, idx) => {
         if(idx == 0){
             currentTempEl.innerHTML = `
-
-
-           
-           
             <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
               
             <div class="other">
-                <div class="day">${window.moment(day.dt*1000).format('dddd')}</div>
-                <div class="temp">Night - ${day.temp.night}&#176;C</div>
-                <div class="temp">Day - ${day.temp.day}&#176;C</div>
+                <div class="day day-today">${window.moment(day.dt*1000).format('dddd')}</div>
+                <div class="temp temp-today">Day: ${Math.round(day.temp.day)}&#176;C</div>
+                <div class="temp temp-today">Night: ${Math.round(day.temp.night)}&#176;C</div>
             </div>
             `
         }else{
@@ -91,18 +89,13 @@ let nextDaysForecast = ''
             <div class="weather-forecast-item">
                 <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
                 <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                <div class="temp">Night - ${day.temp.night}&#176;C</div>
-                <div class="temp">Day - ${day.temp.day}&#176;C</div>
+                <div class="temp">Day: ${Math.round(day.temp.day)}&#176;C</div>
+                <div class="temp">Night: ${Math.round(day.temp.night)}&#176;C</div>
             </div>
-
-
-            
             `
         }
     })
-
-
     weatherForecastEl.innerHTML = nextDaysForecast;
 }
 
-// alert("Unfortunately, your browser does not support geolocation services. Turn location services on to get weather information for your area")
+// Potentially add an alert("Unfortunately, your browser does not support geolocation services. Turn location services on to get weather information for your area")

@@ -36,8 +36,8 @@ html {
     hsla(182, 94%, 39%, 0.6) 100%
   );
   --secondaryColor: rgb(255, 153, 0);
-  --secondaryColor-t: rgb(255, 153, 0, 0.5);
-  --accentColor: rgba(18, 38, 58, 0.5);
+  --secondaryColor-t: rgb(255, 153, 0, 0.6);
+  --accentColor: rgba(18, 38, 58, 0.6);
   --accentColor2: rgb(6, 188, 193);
   --accentColor3: rgb(197, 216, 209);
   --accentColor4: rgb(244, 237, 234);
@@ -137,29 +137,38 @@ a {
 
 .background {
   min-height: 90vh;
-  background: url(./images/WeatherPrpBG.png) no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(./images/sky-background.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-#Title {
-  font-family: var(--headingFont);
-  font-weight: bold;
-  font-style: normal;
-  font-size: 3em;
-  color: var(--secondaryColor);
-  -webkit-text-stroke-width: 1.5px;
-  -webkit-text-stroke-color: var(--accentColor);
-  letter-spacing: 1.5px;
-  padding: 0.4rem;
-}
-
 #Main {
   color: #fff;
   padding: 1.2rem;
   resize: vertical;
+  box-shadow: var(--shadow-4);
+}
+
+#Title {
+  font-family: var(--headingFont);
+  font-weight: bold;
+  font-style: normal;
+  font-size: 4rem;
+  color: var(--secondaryColor);
+  -webkit-text-stroke-width: 1.7px;
+  -webkit-text-stroke-color: var(--accentColor);
+  letter-spacing: 1.5px;
+  padding: 0.6rem;
+  border-radius: 10px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  margin-bottom: 0.4rem;
+  box-shadow: var(--shadow-4);
 }
 
 .col-sm {
@@ -172,6 +181,7 @@ a {
   font-weight: bold;
   letter-spacing: 1px;
   resize: vertical;
+  border-radius: 10px;
 }
 
 #time {
@@ -206,19 +216,22 @@ a {
   resize: vertical;
   justify-content: center;
   text-align: center;
-  margin: 0.2rem 0 0.2rem;
+  margin: 0.4rem 0 0.4rem;
   font-weight: bold;
+  box-shadow: var(--shadow-2);
+  border-radius: 10px;
 }
 
 .data-box {
   border-radius: 10px;
   border: 2px solid var(--accentColor);
+  box-shadow: var(--shadow-3);
 }
 
 .future-forecast {
   display: flex;
   justify-content: start;
-  overflow-y: scroll;
+  border-radius: 10px;
 }
 
 #Forecast {
@@ -235,6 +248,13 @@ a {
   align-items: center;
   padding: 0;
   margin: 1em;
+  box-shadow: var(--shadow-4);
+  border: 1px solid var(--accentColor);
+  border-radius: 10px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
 }
 
 .weather-forecast {
@@ -244,9 +264,11 @@ a {
 
 .weather-forecast-item {
   padding: 1rem;
-  margin: 0 0.5em;
+  margin: 0 0.7em;
   border: 1px solid var(--accentColor);
   border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-4);
 }
 
 .day {
@@ -258,6 +280,21 @@ a {
   text-align: center;
   padding: 0.2em;
 }
+.day-today {
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+.temp {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+.temp-today {
+  font-size: 1.3rem;
+}
+
 #Footer {
   margin-top: 1rem;
 }
@@ -265,6 +302,22 @@ a {
 #Footer div a {
   font-size: 1em;
   color: var(--accentColor4);
+}
+.code-header {
+  color: #fff;
+  text-align: center;
+  box-shadow: var(--shadow-4);
+  border-radius: 10px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.scroll-box2 {
+  overflow-y: auto;
+  max-height: 85vh;
+  padding: 1rem;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -360,8 +413,9 @@ a {
   }
 }
 
-@media only screen and (max-width: 1400px) {
-  .future-forecast {
+@media only screen and (max-width: 1200px) {
+  .weather-forecast {
     overflow-y: scroll;
+    padding: 0 1rem 1rem;
   }
 }
