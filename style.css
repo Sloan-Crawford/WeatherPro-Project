@@ -62,6 +62,7 @@ body {
   max-width: 1120px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .nav-header {
@@ -127,11 +128,16 @@ a {
     display: none;
   }
 
-  .nav-link,
-  .contact-link a {
+  .nav-link {
     font-weight: normal;
     letter-spacing: 1.5px;
     margin-right: 1rem;
+  }
+}
+
+@media screen and (max-height: 950px) {
+  .contact-link a {
+    display: none;
   }
 }
 /* end of nav */
@@ -159,7 +165,7 @@ a {
   font-style: normal;
   font-size: 4rem;
   color: var(--secondaryColor);
-  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-width: 1.2px;
   -webkit-text-stroke-color: var(--accentColor);
   letter-spacing: 1.5px;
   padding: 0.6rem;
@@ -248,7 +254,7 @@ a {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 1em;
+  margin-bottom: 1em;
   box-shadow: var(--shadow-4);
   border: 1px solid var(--accentColor);
   border-radius: 10px;
@@ -304,6 +310,7 @@ a {
   font-size: 1em;
   color: var(--accentColor4);
 }
+
 .code-header {
   color: #fff;
   text-align: center;
@@ -317,8 +324,9 @@ a {
 
 .scroll-box2 {
   overflow-y: auto;
-  max-height: 85vh;
+  max-height: 75vh;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -348,7 +356,7 @@ a {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   #Title {
-    font-size: 2em;
+    font-size: 2.5em;
   }
 
   #Current {
@@ -400,6 +408,12 @@ a {
 @media screen and (min-width: 900px) {
   .page-footer {
     font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #Title {
+    font-size: 1.7em;
   }
 }
 
