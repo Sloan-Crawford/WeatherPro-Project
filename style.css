@@ -109,7 +109,7 @@ body {
 }
 
 .contact-link a {
-  padding: 0.15remm 1rem;
+  padding: 0.15rem 1rem;
   color: var(--secondaryColor);
   font-weight: bold;
   letter-spacing: 1.5px;
@@ -159,11 +159,18 @@ a {
   box-shadow: var(--shadow-4);
 }
 
+.wp-logo {
+  width: 100%;
+  max-width: 80px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
 #Title {
   font-family: var(--headingFont);
   font-weight: bold;
   font-style: normal;
-  font-size: 4rem;
+  /* font-size: 4rem; */
   color: var(--secondaryColor);
   -webkit-text-stroke-width: 1.2px;
   -webkit-text-stroke-color: var(--accentColor);
@@ -192,7 +199,7 @@ a {
 }
 
 #time {
-  font-size: 3.5em;
+  font-size: 1.5em;
   font-family: var(--bodyFont);
   letter-spacing: 4px;
   color: white;
@@ -329,22 +336,25 @@ a {
   margin-top: 2rem;
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  #Title {
-    font-size: 1.4em;
+/* Small devices */
+@media screen and (max-width: 400px) {
+  #Title  {
+    font-size: 1.1em;
+  }
+
+  #time {
+    font-size: .6em;
   }
 
   #Current,
   #Conditions {
-    font-size: 1.4em;
+    font-size: .9em;
   }
 }
 
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-  #Title {
-    font-size: 2em;
+@media screen and (max-width: 576px) {
+  #Title, #time {
+    font-size: 1.2em;
   }
 
   #Current,
@@ -353,25 +363,40 @@ a {
   }
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  #Title {
-    font-size: 2.5em;
+/* Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+  #Title, #time  {
+    font-size: 2em;
   }
 
-  #Current {
+  #Current,
+  #Conditions {
     font-size: 1.5em;
   }
 }
 
-@media (min-width: 992px) {
-  #Background {
-    font-size: 1em;
+/* Large devices (desktops, 992px and up) */
+@media screen and (max-width: 992px) {
+  #Title, #time  {
+    font-size: 2.5em;
+  }
+
+  #Current, #Conditions {
+    font-size: 1.9em;
   }
 }
 
+
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media screen and (min-width: 992px) {
+  #Title, #time  {
+    font-size: 2.5em;
+  }
+
+  #Current,
+  #Conditions {
+    font-size: 2em;
+  }
 }
 
 /* footer */
