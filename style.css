@@ -199,7 +199,7 @@ a {
 }
 
 #time {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-family: var(--bodyFont);
   letter-spacing: 4px;
   color: white;
@@ -236,10 +236,16 @@ a {
   border-radius: 10px;
 }
 
+#Current-Weather-Items {
+  font-size: 0.9em;
+}
+
 .data-box {
   border-radius: 10px;
   border: 2px solid var(--accentColor);
   box-shadow: var(--shadow-3);
+  font-size: 0.8em;
+  font-weight: 500;
 }
 
 .future-forecast {
@@ -338,35 +344,41 @@ a {
 
 /* Small devices */
 @media screen and (max-width: 400px) {
-  #Title  {
+  #Title {
     font-size: 1.1em;
   }
 
   #time {
-    font-size: .6em;
+    font-size: 0.6em;
   }
 
   #Current,
   #Conditions {
-    font-size: .9em;
+    font-size: 0.9em;
   }
 }
 
-@media screen and (max-width: 576px) {
-  #Title, #time {
+@media screen and (max-width: 580px) {
+  #Title,
+  #time {
     font-size: 1.2em;
   }
 
   #Current,
   #Conditions {
     font-size: 1.2em;
+  }
+
+  #Current-Weather-Items {
+    font-size: 0.6em;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media screen and (max-width: 768px) {
-  #Title, #time  {
-    font-size: 2em;
+  #Title,
+  #time {
+    font-size: 1.7em;
   }
 
   #Current,
@@ -377,19 +389,23 @@ a {
 
 /* Large devices (desktops, 992px and up) */
 @media screen and (max-width: 992px) {
-  #Title, #time  {
+  #Title {
     font-size: 2.5em;
   }
 
-  #Current, #Conditions {
+  #time {
+    font-size: 1.3em;
+  }
+
+  #Current,
+  #Conditions {
     font-size: 1.9em;
   }
 }
 
-
-/* Extra large devices (large desktops, 1200px and up) */
 @media screen and (min-width: 992px) {
-  #Title, #time  {
+  #Title,
+  #time {
     font-size: 2.5em;
   }
 
